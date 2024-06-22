@@ -2,6 +2,7 @@ package controller;
 import modelos.Cliente;
 import modelos.DespertadorDecorator;
 import modelos.Reserva;
+import modelos.Subject;
 import modelos.Habitacion;
 import modelos.HabitacionNormal;
 import modelos.InternetDecorator;
@@ -13,7 +14,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReservaController {
+public class ReservaController extends Subject{
     private List<Reserva> reservas;
     private List<Habitacion> habitaciones;
 
@@ -28,6 +29,7 @@ public class ReservaController {
             Reserva reserva = new Reserva(cliente, descripcion, fecha, habitacion);
             reservas.add(reserva);
             habitacion.setDisponible(false); // Marcar la habitación como no disponible
+            notifyObservers(reserva);
             return true;
         }
         return false; // Si la habitación no está disponible o no existe
