@@ -15,6 +15,9 @@ import controller.ReservaController;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
+import modelos.ClienteObserver;
+import modelos.ContabilidadObserver;
+import modelos.MarketingObserver;
 
 public class Main {
     public static void main(String[] args) {
@@ -25,6 +28,15 @@ public class Main {
         // Agregar algunos usuarios para pruebas
         usuarioController.agregarUsuario(new Cliente("Juan", "Perez", "12345678"));
         usuarioController.agregarUsuario(new Gerente("Maria", "Lopez", "87654321"));
+        
+		// Agregar observadores
+        ClienteObserver clienteObserver = new ClienteObserver(/*cliente*/);
+        ContabilidadObserver contabilidadObserver = new ContabilidadObserver();
+        MarketingObserver marketingObserver = new MarketingObserver();
+        
+        reservaController.addObserver(clienteObserver);
+        reservaController.addObserver(contabilidadObserver);
+        reservaController.addObserver(marketingObserver);
 
         boolean programaActivo = true;
         Usuario usuarioActual = null;

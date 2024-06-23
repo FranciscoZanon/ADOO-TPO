@@ -2,7 +2,7 @@ package modelos;
 
 import java.time.LocalDateTime;
 
-public class Reserva {
+public class Reserva{
     private static int idCounter = 0;
     private int id;
     private Cliente cliente;
